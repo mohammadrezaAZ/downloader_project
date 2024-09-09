@@ -1,0 +1,40 @@
+{%  extends 'base.html' %}
+
+{% block title %}Download from Youtube{% endblock %}
+
+{% block content%}
+    <div class="container">
+        <div class="ratio ratio-16x9">
+            <iframe src={{embed}} title="YouTube video" allowfullscreen></iframe>
+          </div>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">Resolution</th>
+                <th scope="col">Type</th>
+                <th scope="col">Download</th>
+              </tr>
+            </thead>
+            {% for i in video %}
+            <tbody>
+              <tr>
+                <th>{{i.filesize}}</th>
+                <td>{{i.resolution}}</td>
+                <td>{{i.type}}</td>
+                <td>
+                    <form action="{% url 'downloaderapp:yt_done' i.resolution %}" method="post">
+                        {% csrf_token%}
+                        <input type="submit" class="btn btn-success" value="Download">
+                    </form>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>      
+    </div>
+
+
+{% endblock %}

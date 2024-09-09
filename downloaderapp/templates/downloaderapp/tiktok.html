@@ -1,0 +1,21 @@
+{%  extends 'base.html' %}
+
+{% block title %}Download from TikTok{% endblock %}
+
+{% block content%}
+
+    <center><h1 style="color: rgb(12, 126, 192);">Paste your Tik Tok video link below:</h1></center>
+    <div class="container">
+    <form action="{% url 'downloaderapp:decide' %}" method="get">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" style="color: rgb(12, 126, 192);" class="form-label">Link: </label>
+          <input name="url" type="text" class="form-control" id="link" aria-describedby="emailHelp">
+          <input type="hidden" name="todo" value="1">
+        </div>
+        <br>
+        <center><button type="submit" class="btn btn-primary">Download</button></center>
+      </form>
+    </div>
+
+
+{% endblock %}
